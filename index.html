@@ -7,25 +7,23 @@
   <meta name="description" content="Simulador interactivo de la reabsorción tubular segmento a segmento (TCP, asa de Henle, TCD, colector). ES/EN.">
   <meta name="color-scheme" content="light dark">
   <link rel="stylesheet" href="src/styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8 6c6-4 12 4 6 8s-6 12 4 12' fill='none' stroke='%230F8B8D' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8 6c6-4 12 4 6 8s-6 12 4 12' fill='none' stroke='%23c0392b' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
 <body>
   <div class="paper">
-    <header class="runline">
-      <span data-i18n="runLeft"></span>
-      <span class="runright">
-        <span data-i18n="runRight"></span>
-        <span class="lang" role="group" data-i18n-aria="langLabel">
+    <header class="top">
+      <div>
+        <h1 data-i18n="title"></h1>
+        <p class="sub" data-i18n="subtitle"></p>
+      </div>
+      <div class="top-right">
+        <div class="lang" role="group" data-i18n-aria="langLabel">
           <button type="button" data-lang="es" aria-pressed="true">ES</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        </span>
-      </span>
+        </div>
+        <div class="legend-tags"><span class="tag" data-i18n="model"></span> <span data-i18n="legendModel"></span></div>
+      </div>
     </header>
-
-    <div class="titleband">
-      <h1 data-i18n="title"></h1>
-      <p data-i18n="subtitle"></p>
-    </div>
 
     <div class="layout">
       <!-- ============ CONTROLS ============ -->
@@ -68,6 +66,7 @@
 
       <!-- ============ STAGE ============ -->
       <main class="stage">
+        <section class="card">
         <h2 data-i18n="h1Nephron"></h2>
         <div class="nephron-wrap">
           <svg id="nephron" viewBox="0 0 600 540" role="group"></svg>
@@ -79,7 +78,9 @@
         </div>
 
         <section id="segPanel" class="segpanel" aria-live="polite"></section>
+        </section>
 
+        <section class="card">
         <h2 data-i18n="h2Load"></h2>
         <div class="chart-head">
           <h4 id="remTitle"></h4>
@@ -95,7 +96,9 @@
         <div class="chart-legend" id="segLegend"></div>
         <button type="button" class="btn small ghost tabletoggle" data-target="tblSegments"></button>
         <div class="tablewrap" id="tblSegments" hidden></div>
+        </section>
 
+        <section class="card">
         <h2 data-i18n="h3Osm"></h2>
         <div class="chart-head"><h4 data-i18n="chartOsm"></h4></div>
         <div class="chart" id="chartOsm"></div>
@@ -103,10 +106,13 @@
         <p class="note small"><span class="tag" data-i18n="model"></span> <span data-i18n="osmNote"></span></p>
         <button type="button" class="btn small ghost tabletoggle" data-target="tblOsm"></button>
         <div class="tablewrap" id="tblOsm" hidden></div>
+        </section>
 
+        <section class="card">
         <h2 data-i18n="h4Ref"></h2>
         <p class="muted small" data-i18n="refNote"></p>
         <div id="reference" class="tablewrap"></div>
+        </section>
       </main>
 
       <!-- ============ OUTPUTS ============ -->
@@ -117,8 +123,8 @@
         </section>
 
         <section class="card">
-          <h3 class="nocolon" data-i18n="hExplain"></h3>
-          <ol id="explain" class="explain"></ol>
+          <h3 data-i18n="hExplain"></h3>
+          <ol id="explain" class="cycle"></ol>
         </section>
 
         <section class="card">

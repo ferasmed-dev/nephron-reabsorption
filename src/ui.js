@@ -628,15 +628,15 @@ function renderExplain() {
   const d = explainData();
   const keys = activeMechanisms(state.params);
   if (!keys.includes('sglt2i') && !keys.includes('fanconi') && R.urine.glucoseG > 1) keys.unshift('glucoseTm');
-  const items = [`<li class="base">${T.expl.filtration(d, F)}</li>`];
-  if (!keys.length) items.push(`<li class="base">${T.expl.normal()}</li>`);
+  const items = [`<li class="on base">${T.expl.filtration(d, F)}</li>`];
+  if (!keys.length) items.push(`<li class="on base">${T.expl.normal()}</li>`);
   const nowLit = new Set(keys);
   for (const k of keys) {
     const fresh = !lastLit.has(k);
-    items.push(`<li class="lit"${fresh ? '' : ' style="animation:none"'} data-mech="${k}">${T.expl[k](d, F)}</li>`);
+    items.push(`<li class="on mech${fresh ? ' fresh' : ''}" data-mech="${k}">${T.expl[k](d, F)}</li>`);
   }
   lastLit = nowLit;
-  items.push(`<li class="base">${T.expl.substance(d, F)}</li>`);
+  items.push(`<li class="on base">${T.expl.substance(d, F)}</li>`);
   $('#explain').innerHTML = items.join('');
 }
 

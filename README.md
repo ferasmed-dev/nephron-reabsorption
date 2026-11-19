@@ -10,7 +10,7 @@ An interactive, bilingual (ES/EN) teaching simulator of **what is reabsorbed and
 
 ## What it shows
 
-- **A nephron diagram** coloured segment by segment by the % of the filtered load each segment reabsorbs (coral = secretion). Animated particles flow along the tubule and leave it when they are reabsorbed; secreted particles enter from outside. The medullary interstitium darkens with its osmolality.
+- **A nephron diagram** coloured segment by segment by the % of the filtered load each segment reabsorbs (blue ramp = reabsorption, red = secretion). Animated particles flow along the tubule and leave it when they are reabsorbed; secreted particles enter from outside. The medullary interstitium darkens with its osmolality.
 - **Click any segment** to see its apical/basolateral transporters for each substance, its regulation, the drugs that act there and the clinical correlates. A bar list shows what that segment reabsorbs in the current scenario.
 - **Live charts:** the % of the filtered load left in the lumen along the nephron (with an optional log scale), the % reabsorbed per segment (diverging bars), and the tubular-fluid osmolality profile. When the scenario differs from normal, the normal values are shown as a dashed comparison. Every chart has a data-table view.
 - **Final urine:** volume, flow, osmolality, fractional excretions (Na⁺, K⁺, Ca²⁺, Mg²⁺, phosphate, HCO₃⁻, urea) and glycosuria, each flagged against reference ranges.
