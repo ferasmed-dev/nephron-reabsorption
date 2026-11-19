@@ -1,0 +1,12 @@
+{
+  "topic": "Tubular reabsorption along the nephron",
+  "topic_es": "Reabsorción tubular a lo largo de la nefrona",
+  "system": "Renal",
+  "specialty": ["Physiology", "Pathophysiology", "Nephrology", "Pharmacology"],
+  "eciModule": ["I", "III", "IV"],
+  "typicalSubjects": ["Fisiología humana", "Fisiopatología", "Farmacología", "Patología médica / Nefrología", "Endocrinología"],
+  "mirRelevant": true,
+  "keywords_es": ["reabsorción tubular", "túbulo contorneado proximal", "asa de Henle", "rama ascendente gruesa", "túbulo contorneado distal", "túbulo colector", "diuréticos", "furosemida", "tiazidas", "amilorida", "espironolactona", "acetazolamida", "iSGLT2", "síndrome de Bartter", "síndrome de Gitelman", "síndrome de Liddle", "síndrome de Fanconi", "diabetes insípida", "ADH", "aldosterona", "PTH", "excreción fraccional"],
+  "keywords_en": ["tubular reabsorption", "proximal convoluted tubule", "loop of Henle", "thick ascending limb", "distal convoluted tubule", "collecting duct", "diuretics", "furosemide", "thiazides", "amiloride", "spironolactone", "acetazolamide", "SGLT2 inhibitors", "Bartter syndrome", "Gitelman syndrome", "Liddle syndrome", "Fanconi syndrome", "diabetes insipidus", "ADH", "aldosterone", "PTH", "fractional excretion"],
+  "languages": ["es", "en"]
+}

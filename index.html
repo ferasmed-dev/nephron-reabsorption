@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reabsorción tubular · simulador de la nefrona</title>
+  <meta name="description" content="Simulador interactivo de la reabsorción tubular segmento a segmento (TCP, asa de Henle, TCD, colector). ES/EN.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8 6c6-4 12 4 6 8s-6 12 4 12' fill='none' stroke='%230F8B8D' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="paper">
+    <header class="runline">
+      <span data-i18n="runLeft"></span>
+      <span class="runright">
+        <span data-i18n="runRight"></span>
+        <span class="lang" role="group" data-i18n-aria="langLabel">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </span>
+      </span>
+    </header>
+
+    <div class="titleband">
+      <h1 data-i18n="title"></h1>
+      <p data-i18n="subtitle"></p>
+    </div>
+
+    <div class="layout">
+      <!-- ============ CONTROLS ============ -->
+      <aside class="controls" aria-label="controls">
+        <section class="card">
+          <h3 data-i18n="hScenario"></h3>
+          <label class="field">
+            <span data-i18n="presetLabel"></span>
+            <select id="preset"></select>
+          </label>
+          <p id="presetDesc" class="muted small"></p>
+          <div class="btnrow">
+            <button type="button" id="copyLink" class="btn" data-i18n="copyLink"></button>
+            <button type="button" id="reset" class="btn ghost" data-i18n="reset"></button>
+          </div>
+          <p id="copyMsg" class="muted small" aria-live="polite"></p>
+        </section>
+
+        <section class="card">
+          <h3 data-i18n="hSubstance"></h3>
+          <div id="subs" class="chips" role="radiogroup"></div>
+        </section>
+
+        <section class="card">
+          <h3 data-i18n="hHormones"></h3>
+          <div id="hormones"></div>
+        </section>
+
+        <section class="card">
+          <h3 data-i18n="hPlasma"></h3>
+          <div id="plasma"></div>
+        </section>
+
+        <section class="card">
+          <h3 data-i18n="hDrugs"></h3>
+          <div id="drugs" class="toggles"></div>
+          <p class="note small"><span class="tag" data-i18n="model"></span> <span data-i18n="acuteNote"></span></p>
+        </section>
+      </aside>
+
+      <!-- ============ STAGE ============ -->
+      <main class="stage">
+        <h2 data-i18n="h1Nephron"></h2>
+        <div class="nephron-wrap">
+          <svg id="nephron" viewBox="0 0 600 540" role="group"></svg>
+          <div class="nephron-bar">
+            <div id="legend" class="legend"></div>
+            <button type="button" id="anim" class="btn small"></button>
+          </div>
+          <p class="muted small" id="pLegend"></p>
+        </div>
+
+        <section id="segPanel" class="segpanel" aria-live="polite"></section>
+
+        <h2 data-i18n="h2Load"></h2>
+        <div class="chart-head">
+          <h4 id="remTitle"></h4>
+          <label class="check small"><input type="checkbox" id="logScale"> <span data-i18n="logScale"></span></label>
+        </div>
+        <div class="chart" id="chartRemaining"></div>
+        <div class="chart-legend" id="remLegend"></div>
+        <button type="button" class="btn small ghost tabletoggle" data-target="tblRemaining"></button>
+        <div class="tablewrap" id="tblRemaining" hidden></div>
+
+        <div class="chart-head"><h4 id="segTitle"></h4></div>
+        <div class="chart" id="chartSegments"></div>
+        <div class="chart-legend" id="segLegend"></div>
+        <button type="button" class="btn small ghost tabletoggle" data-target="tblSegments"></button>
+        <div class="tablewrap" id="tblSegments" hidden></div>
+
+        <h2 data-i18n="h3Osm"></h2>
+        <div class="chart-head"><h4 data-i18n="chartOsm"></h4></div>
+        <div class="chart" id="chartOsm"></div>
+        <div class="chart-legend" id="osmLegend"></div>
+        <p class="note small"><span class="tag" data-i18n="model"></span> <span data-i18n="osmNote"></span></p>
+        <button type="button" class="btn small ghost tabletoggle" data-target="tblOsm"></button>
+        <div class="tablewrap" id="tblOsm" hidden></div>
+
+        <h2 data-i18n="h4Ref"></h2>
+        <p class="muted small" data-i18n="refNote"></p>
+        <div id="reference" class="tablewrap"></div>
+      </main>
+
+      <!-- ============ OUTPUTS ============ -->
+      <aside class="outputs">
+        <section class="card urine">
+          <h3 data-i18n="hUrine"></h3>
+          <div id="urine"></div>
+        </section>
+
+        <section class="card">
+          <h3 class="nocolon" data-i18n="hExplain"></h3>
+          <ol id="explain" class="explain"></ol>
+        </section>
+
+        <section class="card">
+          <div class="cardhead">
+            <h3 data-i18n="hLog"></h3>
+            <button type="button" id="clearLog" class="btn small ghost" data-i18n="clearLog"></button>
+          </div>
+          <ol id="log" class="log" reversed></ol>
+        </section>
+
+      </aside>
+    </div>
+
+    <footer class="foot">
+      <span data-i18n="footer"></span> · <a href="https://github.com/ferasmed-dev/nephron-reabsorption">GitHub</a> · MIT
+    </footer>
+  </div>
+
+  <script type="module" src="src/ui.js"></script>
+</body>
+</html>
